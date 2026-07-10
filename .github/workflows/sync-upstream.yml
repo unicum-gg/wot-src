@@ -1,0 +1,33 @@
+name: Sync upstream branches
+
+# Keeps every mirror branch of this fork fast-forwarded to IzeBerg/wot-src, so if
+# upstream ever goes private we already hold a current copy. Runs twice a day plus
+# a manual trigger. Scheduled workflows only run from the default branch, which is
+# why this file lives on `main` and the mirror branches stay untouched by it.
+#
+# Requires a `SYNC_PAT` secret: a fine-grained PAT with Contents: write on this
+# repo. The default GITHUB_TOKEN can't be used because the org disables write
+# permissions for workflow tokens.
+on:
+  schedule:
+    - cron: "0 6,23 * * *" # 06:00 and 23:00 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [ASIA, CN, CT, EU, NA, PT_RU, RU]
+    steps:
+      - name: Fast-forward ${{ matrix.branch }} from upstream
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_PAT }}
+        # Fast-forward only: a mirror branch that ever diverges (a stray commit)
+        # will fail here loudly rather than being silently force-reset.
+        run: gh repo sync ${{ github.repository }} --branch "${{ matrix.branch }}"
