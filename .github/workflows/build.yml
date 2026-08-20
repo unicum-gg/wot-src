@@ -1,0 +1,107 @@
+name: build
+
+# Rebuilds the decompiled sources from the live client and pushes what changed.
+# Scheduled workflows only run from the default branch, which is why this lives
+# on `main` while the content branches carry the output.
+#
+# Needs the `SYNC_PAT` secret (fine-grained PAT, Contents: write) for the same
+# reason `sync-upstream.yml` does: the org disables write for GITHUB_TOKEN.
+on:
+  schedule:
+    - cron: "0 5 * * *" # daily, after the upstream sync window
+  workflow_dispatch:
+
+concurrency:
+  group: build
+  cancel-in-progress: false
+
+env:
+  # Pinned on purpose. A newer uncompyle6 mangles nested dict comprehensions,
+  # and ffdec past 14.4.0 reorders SWF metadata and rewrites boolean coercions,
+  # so either one would make our output drift from upstream's.
+  UNCOMPYLE6_VERSION: "3.8.0"
+  FFDEC_VERSION: "14.4.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      max-parallel: 1 # each job pulls several GB, keep them sequential
+      matrix:
+        include:
+          - branch: EU
+            host: wgus-woteu.wargaming.net
+            guid: WOT.EU.PRODUCTION
+          - branch: NA
+            host: wgus-wotna.wargaming.net
+            guid: WOT.NA.PRODUCTION
+          - branch: ASIA
+            host: wgus-wotasia.wargaming.net
+            guid: WOT.ASIA.PRODUCTION
+          - branch: CT
+            host: wgus-wotct.wargaming.net
+            guid: WOT.CT.PRODUCTION
+
+    steps:
+      - name: Checkout generator (main)
+        uses: actions/checkout@v4
+
+      - name: Install 7-Zip
+        run: sudo apt-get update && sudo apt-get install -y p7zip-full
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      # uncompyle6 3.8.0 does not run on a modern interpreter; 3.9 is what the
+      # byte-for-byte comparison against upstream was validated on.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: Install decompilers
+        run: |
+          python -m pip install --quiet "uncompyle6==${UNCOMPYLE6_VERSION}" polib
+          mkdir -p tools/ffdec
+          curl -sL "https://github.com/jindrapetrik/jpexs-decompiler/releases/download/version${FFDEC_VERSION}/ffdec_${FFDEC_VERSION}.zip" -o /tmp/ffdec.zip
+          unzip -q /tmp/ffdec.zip -d tools/ffdec
+
+      - name: Prepare branch worktree
+        run: |
+          git config user.name "wot-src build"
+          git config user.email "actions@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin "${{ matrix.branch }}" >/dev/null; then
+            git fetch --depth 1 origin "${{ matrix.branch }}"
+            git worktree add out "origin/${{ matrix.branch }}"
+          else
+            git worktree add --orphan -b "${{ matrix.branch }}" out
+          fi
+
+      - name: Generate (no-op if the client version is unchanged)
+        env:
+          WOTSRC_PYTHON: python
+          WOTSRC_FFDEC_JAR: tools/ffdec/ffdec.jar
+        run: npm run generate -- --host "${{ matrix.host }}" --guid "${{ matrix.guid }}" --out out
+
+      - name: Commit & push if changed
+        working-directory: out
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_PAT }}
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no changes for ${{ matrix.branch }}"
+            exit 0
+          fi
+          git commit -m "🍱 sync ${{ matrix.branch }} sources"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+          git push origin "HEAD:${{ matrix.branch }}"

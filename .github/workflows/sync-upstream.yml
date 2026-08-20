@@ -1,8 +1,9 @@
 name: Sync upstream branches
 
-# Keeps every mirror branch of this fork fast-forwarded to IzeBerg/wot-src, so if
-# upstream ever goes private we already hold a current copy. Runs twice a day plus
-# a manual trigger. Scheduled workflows only run from the default branch, which is
+# Keeps the mirror-only branches of this fork fast-forwarded to IzeBerg/wot-src.
+# The branches we build ourselves (EU, NA, ASIA, CT) are excluded: they carry our
+# own extraction and would fail a fast-forward. Runs twice a day plus a manual
+# trigger. Scheduled workflows only run from the default branch, which is
 # why this file lives on `main` and the mirror branches stay untouched by it.
 #
 # Requires a `SYNC_PAT` secret: a fine-grained PAT with Contents: write on this
@@ -23,7 +24,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        branch: [ASIA, CN, CT, EU, NA, PT_RU, RU]
+        # EU/NA/ASIA/CT are built from the client by `build.yml`, so they
+        # diverge from upstream on purpose and must not be synced here.
+        branch: [CN, PT_RU, RU]
     steps:
       - name: Fast-forward ${{ matrix.branch }} from upstream
         env:
