@@ -20,7 +20,7 @@
 					<type>float</type>
 					<name>Tank_Speed</name>
 					<rangeStart>4.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -31,7 +31,7 @@
 				<condition>
 					<type>float</type>
 					<name>Tank_Speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>-0.200000</rangeEnd>
 				</condition>
 			</conditions>
@@ -51,7 +51,7 @@
 				<condition>
 					<type>float</type>
 					<name>Tank_Speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>4.000000</rangeEnd>
 				</condition>
 			</conditions>
@@ -64,7 +64,7 @@
 					<type>float</type>
 					<name>Tank_Speed</name>
 					<rangeStart>7.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -83,7 +83,7 @@
 				<condition>
 					<type>float</type>
 					<name>Tank_Speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>7.000000</rangeEnd>
 				</condition>
 			</conditions>
@@ -104,7 +104,7 @@
 					<type>float</type>
 					<name>Tank_Speed</name>
 					<rangeStart>-0.200000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
