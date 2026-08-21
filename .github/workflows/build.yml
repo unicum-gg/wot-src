@@ -48,8 +48,19 @@ jobs:
       - name: Checkout generator (main)
         uses: actions/checkout@v4
 
-      - name: Install 7-Zip
-        run: sudo apt-get update && sudo apt-get install -y p7zip-full
+      # xdelta3 and librsync decode the two delta formats the incremental
+      # patches ship their packages as (`.xdiff` and `.rdiff`).
+      - name: Install extraction tools
+        run: sudo apt-get update && sudo apt-get install -y p7zip-full xdelta3 librsync-bin
+
+      # A package is held on disk three times at its widest (the archive, the
+      # patched copy, the unpacked contents), and the largest are several GB.
+      # The runner's stock image leaves too little room for that.
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+            /usr/local/share/boost "$AGENT_TOOLSDIRECTORY"
+          df -h /
 
       - uses: actions/setup-node@v4
         with:
@@ -60,11 +71,13 @@ jobs:
           distribution: temurin
           java-version: "21"
 
-      # uncompyle6 3.8.0 does not run on a modern interpreter; 3.9 is what the
-      # byte-for-byte comparison against upstream was validated on.
+      # uncompyle6 3.8.0 does not run on a modern interpreter, and the patch
+      # level matters too: its `xdis` dependency keys opcode tables by exact
+      # version, so "3.9" resolving to 3.9.25 dies with KeyError: '3.9.25'.
+      # 3.9.6 is the interpreter the comparison against upstream was run on.
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.9"
+          python-version: "3.9.6"
 
       - run: npm ci --no-audit --no-fund
 
@@ -74,6 +87,19 @@ jobs:
           mkdir -p tools/ffdec
           curl -sL "https://github.com/jindrapetrik/jpexs-decompiler/releases/download/version${FFDEC_VERSION}/ffdec_${FFDEC_VERSION}.zip" -o /tmp/ffdec.zip
           unzip -q /tmp/ffdec.zip -d tools/ffdec
+
+      # Fail in seconds rather than after half an hour of extraction if the
+      # interpreter and the decompiler disagree.
+      - name: Check the decompiler runs
+        run: |
+          python - <<'SMOKE'
+          import io, py_compile, tempfile, os
+          from uncompyle6.main import decompile_file
+          src = os.path.join(tempfile.mkdtemp(), "probe.py")
+          open(src, "w").write("def probe():\n    return 1\n")
+          decompile_file(py_compile.compile(src, doraise=True), io.StringIO())
+          print("uncompyle6 is functional")
+          SMOKE
 
       - name: Prepare branch worktree
         run: |
@@ -102,6 +128,6 @@ jobs:
             echo "no changes for ${{ matrix.branch }}"
             exit 0
           fi
-          git commit -m "🍱 sync ${{ matrix.branch }} sources"
+          git commit -m "🍱 sync ${{ matrix.branch }} sources $(cat .version_name)"
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
           git push origin "HEAD:${{ matrix.branch }}"
