@@ -69,10 +69,7 @@
 		<domainNameSet>loczii\.in</domainNameSet>
 		<domainNameSet>worldoftanks\.ws</domainNameSet>
 		<domainNameSet>wotakk\.ws</domainNameSet>
-		<domainNameSet>
-			76\.gd
-			<!--BW_String-->
-		</domainNameSet>
+		<domainNameSet>76\.gd</domainNameSet>
 		<domainNameSet>worldoftanks\.rutracker\.name</domainNameSet>
 		<domainNameSet>(sdjig|disg|dsig|dig)\.la</domainNameSet>
 		<domainNameSet>warthunder\.</domainNameSet>

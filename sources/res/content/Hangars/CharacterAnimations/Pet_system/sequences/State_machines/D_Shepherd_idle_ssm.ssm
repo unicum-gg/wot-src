@@ -309,7 +309,7 @@
 					<type>float</type>
 					<name>state_int</name>
 					<rangeStart>2.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -439,7 +439,7 @@
 					<type>float</type>
 					<name>state_int</name>
 					<rangeStart>1.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -477,7 +477,7 @@
 					<type>float</type>
 					<name>state_int</name>
 					<rangeStart>1.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -706,7 +706,7 @@
 				<condition>
 					<type>float</type>
 					<name>state_int</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>2.000000</rangeEnd>
 				</condition>
 			</conditions>

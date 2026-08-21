@@ -3159,8 +3159,8 @@
 						0.0000
 						<!--BW_String-->
 					</densityMin>
-					<density>-nan</density>
-					<scale>-nan</scale>
+					<density>NaN</density>
+					<scale>NaN</scale>
 					<scaleDeviation>
 						0.00
 						<!--BW_String-->
