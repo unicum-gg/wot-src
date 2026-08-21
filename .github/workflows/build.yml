@@ -48,10 +48,11 @@ jobs:
       - name: Checkout generator (main)
         uses: actions/checkout@v4
 
-      # xdelta3 and librsync decode the two delta formats the incremental
-      # patches ship their packages as (`.xdiff` and `.rdiff`).
+      # The two delta formats the incremental patches ship their packages as:
+      # `.xdiff` is VCDIFF, decoded by xdelta3, and `.rdiff` is librsync, whose
+      # decoder is packaged as `rdiff` (`librsync-bin` installs no binary).
       - name: Install extraction tools
-        run: sudo apt-get update && sudo apt-get install -y p7zip-full xdelta3 librsync-bin
+        run: sudo apt-get update && sudo apt-get install -y p7zip-full xdelta3 rdiff
 
       # A package is held on disk three times at its widest (the archive, the
       # patched copy, the unpacked contents), and the largest are several GB.
