@@ -218,6 +218,22 @@ async function harvestPart(part: string, chain: Patch[], loose: string): Promise
   fs.rmSync(partDir, { recursive: true, force: true });
 }
 
+/**
+ * Empty the branch worktree before writing into it.
+ *
+ * `git add -A` only records a deletion when the file is gone from disk, so
+ * writing over the tree accumulates whatever the client dropped: a renamed
+ * catalogue leaves both names behind for good. Everything published is
+ * regenerated on every run, so wiping first is what makes a removal propagate.
+ */
+function clearOutput(): void {
+  if (!fs.existsSync(OUT)) return;
+  for (const entry of fs.readdirSync(OUT)) {
+    if (entry === ".git") continue; // the worktree link, not ours to touch
+    fs.rmSync(path.join(OUT, entry), { recursive: true, force: true });
+  }
+}
+
 /** The files that describe the branch rather than come out of the client. */
 function publishRepoFiles(versionName: string): void {
   for (const stub of walk(STUBS)) {
@@ -258,6 +274,8 @@ async function main(): Promise<void> {
     log(`already at ${client.versionName}, nothing to do`);
     return;
   }
+
+  clearOutput();
 
   const loose = path.join(workDir, "loose");
   for (const part of PACKAGE_PARTS) {
