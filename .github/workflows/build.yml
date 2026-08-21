@@ -43,6 +43,12 @@ jobs:
           - branch: CT
             host: wgus-wotct.wargaming.net
             guid: WOT.CT.PRODUCTION
+          # Мир танков, published by Lesta on its own update service since
+          # Wargaming left Russia. Same protocol, different host and app tag:
+          # the guid came out of the launcher's embedded gc_info.xml.
+          - branch: RU
+            host: lstus-ru.lesta.ru
+            guid: MT.RU.PRODUCTION
 
     steps:
       - name: Checkout generator (main)

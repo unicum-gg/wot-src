@@ -18,10 +18,18 @@ daily and pushes what changed, the same way
 | [`NA`](../../tree/NA) | Wargaming release, NA | `wgus-wotna.wargaming.net` | `WOT.NA.PRODUCTION` |
 | [`ASIA`](../../tree/ASIA) | Wargaming release, Asia | `wgus-wotasia.wargaming.net` | `WOT.ASIA.PRODUCTION` |
 | [`CT`](../../tree/CT) | Wargaming Common Test | `wgus-wotct.wargaming.net` | `WOT.CT.PRODUCTION` |
+| [`RU`](../../tree/RU) | Lesta release (Мир танков) | `lstus-ru.lesta.ru` | `MT.RU.PRODUCTION` |
 
 These keep the names they had as upstream mirrors, so everything reading this
 repo carries on unchanged; they simply stop being copies of IzeBerg's work and
 become our own extraction, one build fresher.
+
+`RU` is not Wargaming's: since it left Russia its own service froze that branch
+at December 2023, and Мир танков is published by **Lesta**, on its own update
+service. It runs the same protocol, so only the host and the app tag change.
+Two details differ and are handled in `lib/wgus.ts`: Lesta sends no
+`version_from`, so the chain is ordered by `version_to` with the full install
+first, and its build directories are named `mt_<version>_ru_<hash>`.
 
 The host column is an entry point, not necessarily where the build is served:
 WGUS answers a moved branch with a `redirect_url` that the generator follows.
@@ -31,7 +39,7 @@ published while a test is running, so between tests its build is a no-op.
 ## Branches we mirror
 
 [`sync-upstream`](.github/workflows/sync-upstream.yml) still fast-forwards the
-branches we do **not** build, `CN`, `PT_RU` and `RU`, from
+branches we do **not** build, `CN` and `PT_RU`, from
 [IzeBerg/wot-src](https://github.com/IzeBerg/wot-src) twice a day.
 
 > Don't commit to those directly. Any divergence makes the fast-forward sync

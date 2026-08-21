@@ -24,9 +24,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # EU/NA/ASIA/CT are built from the client by `build.yml`, so they
+        # EU/NA/ASIA/CT/RU are built from the client by `build.yml`, so they
         # diverge from upstream on purpose and must not be synced here.
-        branch: [CN, PT_RU, RU]
+        branch: [CN, PT_RU]
     steps:
       - name: Fast-forward ${{ matrix.branch }} from upstream
         env:
