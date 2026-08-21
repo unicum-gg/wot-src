@@ -91,16 +91,19 @@ jobs:
           unzip -q /tmp/ffdec.zip -d tools/ffdec
 
       # Fail in seconds rather than after half an hour of extraction if the
-      # interpreter and the decompiler disagree.
+      # interpreter and the decompiler disagree. Importing `main` is where a
+      # mismatched interpreter blows up (xdis resolves the host version there),
+      # and the scanner is what the run actually needs: the client's bytecode is
+      # Python 2.7, which this interpreter cannot compile, so the check loads
+      # that table rather than round-tripping a file it would have to build.
       - name: Check the decompiler runs
         run: |
           python - <<'SMOKE'
-          import io, py_compile, tempfile, os
-          from uncompyle6.main import decompile_file
-          src = os.path.join(tempfile.mkdtemp(), "probe.py")
-          open(src, "w").write("def probe():\n    return 1\n")
-          decompile_file(py_compile.compile(src, doraise=True), io.StringIO())
-          print("uncompyle6 is functional")
+          import sys
+          from uncompyle6.main import decompile_file  # noqa: F401
+          from uncompyle6.scanner import get_scanner
+          scanner = get_scanner("2.7")
+          print("uncompyle6 on %s reads %d 2.7 opcodes" % (sys.version.split()[0], len(scanner.opc.opname)))
           SMOKE
 
       - name: Prepare branch worktree
