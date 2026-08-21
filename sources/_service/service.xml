@@ -1,0 +1,8 @@
+<protocol name="service" version="1.2">
+        <patch_service_info>
+            <delete_at_the_beginning>true</delete_at_the_beginning>
+                <files_to_delete>
+                    <directory>res\text\lc_messages</directory>
+                </files_to_delete>
+        </patch_service_info>
+    </protocol>

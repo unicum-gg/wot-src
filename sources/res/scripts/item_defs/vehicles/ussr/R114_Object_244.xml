@@ -2893,10 +2893,7 @@
 				<left>
 					<segmentsCount>93</segmentsCount>
 					<segmentsOuterThickness>0.030349</segmentsOuterThickness>
-					<segmentsInnerThickness>
-						-0
-						<!--BW_String-->
-					</segmentsInnerThickness>
+					<segmentsInnerThickness>-0</segmentsInnerThickness>
 					<segmentsPlaneOffset>
 						-1.149
 						<!--BW_String-->

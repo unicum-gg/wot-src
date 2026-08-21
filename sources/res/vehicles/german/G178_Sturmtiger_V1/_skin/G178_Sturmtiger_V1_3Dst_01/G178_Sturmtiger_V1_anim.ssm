@@ -55,7 +55,7 @@
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>2.000000</rangeEnd>
 				</condition>
 			</conditions>
@@ -80,7 +80,7 @@
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>-2.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>

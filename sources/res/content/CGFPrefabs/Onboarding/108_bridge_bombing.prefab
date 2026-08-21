@@ -8374,7 +8374,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8392,7 +8395,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8410,7 +8416,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8428,7 +8437,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8446,7 +8458,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8464,7 +8479,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8482,7 +8500,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8500,7 +8521,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8518,7 +8542,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8536,7 +8563,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8554,7 +8584,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8572,7 +8605,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8590,7 +8626,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8608,7 +8647,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8626,7 +8668,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8644,7 +8689,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8662,7 +8710,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>
@@ -8680,7 +8731,10 @@
 					</property>
 					<property>
 						<name>rigidBody</name>
-						<link>00000000-0000-0000-0000-000000000000</link>
+						<link>
+							00000000-0000-0000-0000-000000000000
+							<!--BW_String-->
+						</link>
 					</property>
 					<property>
 						<name>receiver</name>

@@ -580,14 +580,11 @@ class Label(LabelBuilder):
 	def __sizeof__(*args, **kwargs): pass
 	def __str__(*args, **kwargs): pass
 	def __subclasshook__(*args, **kwargs): pass
-	def backColour(self, *args, **kwargs): pass
-	def backPadding(self, *args, **kwargs): pass
 	def blendMode(self, *args, **kwargs): pass
 	def colour(self, *args, **kwargs): pass
 	def doubleSided(self, *args, **kwargs): pass
 	def font(self, *args, **kwargs): pass
 	def position(self, *args, **kwargs): pass
-	def scale(self, *args, **kwargs): pass
 	def text(self, *args, **kwargs): pass
 	def texture(self, *args, **kwargs): pass
 	def wireframe(self, *args, **kwargs): pass

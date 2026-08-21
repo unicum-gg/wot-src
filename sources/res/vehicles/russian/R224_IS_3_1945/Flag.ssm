@@ -38,7 +38,7 @@
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>0.100000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -61,7 +61,7 @@
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>0.100000</rangeEnd>
 				</condition>
 			</conditions>
@@ -77,7 +77,10 @@
 			</conditions>
 		</transition>
 		<transition>
-			<to>1-&gt;2</to>
+			<to>
+				1-&gt;2
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
@@ -88,7 +91,7 @@
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>2.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -192,7 +195,7 @@
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>9.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -225,7 +228,7 @@
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>0.100000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -262,20 +265,23 @@
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>0.100000</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
 		<transition>
-			<to>1-&gt;2</to>
+			<to>
+				1-&gt;2
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>2.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -348,20 +354,23 @@
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>2.000000</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
 		<transition>
-			<to>2-&gt;3</to>
+			<to>
+				2-&gt;3
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>3.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -394,13 +403,16 @@
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>2.000000</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
 		<transition>
-			<to>2-&gt;3</to>
+			<to>
+				2-&gt;3
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
@@ -411,14 +423,17 @@
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>3.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
 		<uiPosition>-677.000000 -178.500000 0.000000</uiPosition>
 	</node>
 	<node>
-		<name>1-&gt;2</name>
+		<name>
+			1-&gt;2
+			<!--BW_String-->
+		</name>
 		<type>sequence</type>
 		<resource>vehicles/russian/R224_IS_3_1945/Sequence/F1.seq</resource>
 		<isLoop>true</isLoop>
@@ -452,7 +467,10 @@
 			</conditions>
 		</transition>
 		<transition>
-			<to>3-&gt;</to>
+			<to>
+				3-&gt;
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
@@ -462,13 +480,16 @@
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>3.000000</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
 		<transition>
-			<to>3-&gt;4</to>
+			<to>
+				3-&gt;4
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
@@ -479,7 +500,7 @@
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>5.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -492,33 +513,42 @@
 		<isLoop>true</isLoop>
 		<loop>-1</loop>
 		<transition>
-			<to>3-&gt;</to>
+			<to>
+				3-&gt;
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>3.000000</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
 		<transition>
-			<to>3-&gt;4</to>
+			<to>
+				3-&gt;4
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>5.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
 		<uiPosition>-222.000000 -43.000000 0.000000</uiPosition>
 	</node>
 	<node>
-		<name>3-&gt;</name>
+		<name>
+			3-&gt;
+			<!--BW_String-->
+		</name>
 		<type>sequence</type>
 		<resource>vehicles/russian/R224_IS_3_1945/Sequence/F3.seq</resource>
 		<isLoop>true</isLoop>
@@ -554,7 +584,10 @@
 		<uiPosition>-223.000000 -10.500000 0.000000</uiPosition>
 	</node>
 	<node>
-		<name>2-&gt;3</name>
+		<name>
+			2-&gt;3
+			<!--BW_String-->
+		</name>
 		<type>sequence</type>
 		<resource>vehicles/russian/R224_IS_3_1945/Sequence/F2.seq</resource>
 		<isLoop>true</isLoop>
@@ -572,7 +605,10 @@
 		<uiPosition>-405.000000 -128.500000 0.000000</uiPosition>
 	</node>
 	<node>
-		<name>3-&gt;4</name>
+		<name>
+			3-&gt;4
+			<!--BW_String-->
+		</name>
 		<type>sequence</type>
 		<resource>vehicles/russian/R224_IS_3_1945/Sequence/F3.seq</resource>
 		<isLoop>true</isLoop>
@@ -590,7 +626,10 @@
 		<uiPosition>9.500000 -106.000000 0.000000</uiPosition>
 	</node>
 	<node>
-		<name>4-&gt;3</name>
+		<name>
+			4-&gt;3
+			<!--BW_String-->
+		</name>
 		<type>sequence</type>
 		<resource>vehicles/russian/R224_IS_3_1945/Sequence/F4.seq</resource>
 		<isLoop>true</isLoop>
@@ -614,7 +653,10 @@
 		<isLoop>true</isLoop>
 		<loop>1</loop>
 		<transition>
-			<to>4-&gt;3</to>
+			<to>
+				4-&gt;3
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
@@ -624,7 +666,7 @@
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>5.000000</rangeEnd>
 				</condition>
 			</conditions>
@@ -640,7 +682,10 @@
 			</conditions>
 		</transition>
 		<transition>
-			<to>4-&gt;5</to>
+			<to>
+				4-&gt;5
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
@@ -651,7 +696,7 @@
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>7.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -664,26 +709,32 @@
 		<isLoop>true</isLoop>
 		<loop>-1</loop>
 		<transition>
-			<to>4-&gt;3</to>
+			<to>
+				4-&gt;3
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>5.000000</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
 		<transition>
-			<to>4-&gt;5</to>
+			<to>
+				4-&gt;5
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>7.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -708,7 +759,10 @@
 		<uiPosition>260.000000 -3.500000 0.000000</uiPosition>
 	</node>
 	<node>
-		<name>4-&gt;5</name>
+		<name>
+			4-&gt;5
+			<!--BW_String-->
+		</name>
 		<type>sequence</type>
 		<resource>vehicles/russian/R224_IS_3_1945/Sequence/F4.seq</resource>
 		<isLoop>true</isLoop>
@@ -726,7 +780,10 @@
 		<uiPosition>392.000000 -162.500000 0.000000</uiPosition>
 	</node>
 	<node>
-		<name>5-&gt;4</name>
+		<name>
+			5-&gt;4
+			<!--BW_String-->
+		</name>
 		<type>sequence</type>
 		<resource>vehicles/russian/R224_IS_3_1945/Sequence/F5.seq</resource>
 		<isLoop>true</isLoop>
@@ -768,26 +825,32 @@
 		<isLoop>true</isLoop>
 		<loop>-1</loop>
 		<transition>
-			<to>5-&gt;4</to>
+			<to>
+				5-&gt;4
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>7.000000</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
 		<transition>
-			<to>5-&gt;6</to>
+			<to>
+				5-&gt;6
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>9.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -800,7 +863,10 @@
 		<isLoop>true</isLoop>
 		<loop>1</loop>
 		<transition>
-			<to>5-&gt;4</to>
+			<to>
+				5-&gt;4
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
@@ -810,13 +876,16 @@
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>7.000000</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
 		<transition>
-			<to>5-&gt;6</to>
+			<to>
+				5-&gt;6
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
@@ -827,7 +896,7 @@
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>9.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -844,7 +913,10 @@
 		<uiPosition>647.500000 -168.000000 0.000000</uiPosition>
 	</node>
 	<node>
-		<name>5-&gt;6</name>
+		<name>
+			5-&gt;6
+			<!--BW_String-->
+		</name>
 		<type>sequence</type>
 		<resource>vehicles/russian/R224_IS_3_1945/Sequence/F5.seq</resource>
 		<isLoop>true</isLoop>
@@ -862,7 +934,10 @@
 		<uiPosition>577.000000 -301.000000 0.000000</uiPosition>
 	</node>
 	<node>
-		<name>6-&gt;5</name>
+		<name>
+			6-&gt;5
+			<!--BW_String-->
+		</name>
 		<type>sequence</type>
 		<resource>vehicles/russian/R224_IS_3_1945/Sequence/F6.seq</resource>
 		<isLoop>true</isLoop>
@@ -896,7 +971,10 @@
 			</conditions>
 		</transition>
 		<transition>
-			<to>6-&gt;5</to>
+			<to>
+				6-&gt;5
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
@@ -906,7 +984,7 @@
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>9.000000</rangeEnd>
 				</condition>
 			</conditions>
@@ -920,13 +998,16 @@
 		<isLoop>true</isLoop>
 		<loop>-1</loop>
 		<transition>
-			<to>6-&gt;5</to>
+			<to>
+				6-&gt;5
+				<!--BW_String-->
+			</to>
 			<blendDuration>0.000000</blendDuration>
 			<conditions>
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>9.000000</rangeEnd>
 				</condition>
 			</conditions>

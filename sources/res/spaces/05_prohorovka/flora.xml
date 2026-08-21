@@ -3186,9 +3186,9 @@
 						<!--BW_String-->
 					</startat>
 					<castShadow>false</castShadow>
-					<density>-nan</density>
-					<scale>-nan</scale>
-					<scaleDeviation>-nan</scaleDeviation>
+					<density>NaN</density>
+					<scale>NaN</scale>
+					<scaleDeviation>NaN</scaleDeviation>
 					<fadeout>
 						5.00
 						<!--BW_String-->

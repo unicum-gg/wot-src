@@ -5,6 +5,7 @@
 __doc__ = None
 __name__ = 'Steam'
 __package__ = None
+def activateGameOverlayToWebPage(*args, **kwargs): pass
 def gameOverlayActivated(*args, **kwargs): pass
 def getPersonaName(*args, **kwargs): pass
 def getSteamID(*args, **kwargs): pass

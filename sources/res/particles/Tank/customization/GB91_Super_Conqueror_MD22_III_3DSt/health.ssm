@@ -20,7 +20,7 @@
 				<condition>
 					<type>float</type>
 					<name>health</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>0.800000</rangeEnd>
 				</condition>
 			</conditions>
@@ -41,7 +41,7 @@
 				<condition>
 					<type>float</type>
 					<name>health</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>0.600000</rangeEnd>
 				</condition>
 			</conditions>
@@ -55,7 +55,7 @@
 					<type>float</type>
 					<name>health</name>
 					<rangeStart>0.800000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -76,7 +76,7 @@
 					<type>float</type>
 					<name>health</name>
 					<rangeStart>0.200000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -96,7 +96,7 @@
 				<condition>
 					<type>float</type>
 					<name>health</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>0.400000</rangeEnd>
 				</condition>
 			</conditions>
@@ -110,7 +110,7 @@
 					<type>float</type>
 					<name>health</name>
 					<rangeStart>0.600000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -130,7 +130,7 @@
 				<condition>
 					<type>float</type>
 					<name>health</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>0.200000</rangeEnd>
 				</condition>
 			</conditions>
@@ -144,7 +144,7 @@
 					<type>float</type>
 					<name>health</name>
 					<rangeStart>0.400000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
