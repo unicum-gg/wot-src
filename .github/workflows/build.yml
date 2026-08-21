@@ -137,5 +137,5 @@ jobs:
             echo "no changes for ${{ matrix.branch }}"
             exit 0
           fi
-          git commit -m "🍱 sync ${{ matrix.branch }} sources $(cat .version_name)"
+          git commit -m "🍱 update ${{ matrix.branch }} sources to $(cat .version_name)"
           git push origin "HEAD:${{ matrix.branch }}"
