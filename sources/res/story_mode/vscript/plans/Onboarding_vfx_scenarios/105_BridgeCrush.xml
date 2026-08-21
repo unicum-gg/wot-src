@@ -29,7 +29,6 @@
 					</param>
 					<param>
 						399A153A.454EB303.AE5640B9.64E28777
-						<!--BW_String-->
 						<name>Guid</name>
 						<type>StringT</type>
 					</param>
@@ -67,7 +66,6 @@
 					</param>
 					<param>
 						27D79CCF.49C148DB.F9836193.F7D74752
-						<!--BW_String-->
 						<name>Guid</name>
 						<type>StringT</type>
 					</param>

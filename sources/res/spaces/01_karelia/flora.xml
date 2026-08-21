@@ -1280,7 +1280,7 @@
 						<!--BW_String-->
 					</sizeLimit>
 					<castShadow>false</castShadow>
-					<density>-nan</density>
+					<density>NaN</density>
 					<scale>
 						1.50
 						<!--BW_String-->
