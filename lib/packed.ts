@@ -4,6 +4,8 @@
 // for its own value, then one `uint16 keyIndex` + `uint32` descriptor per child.
 // A descriptor packs the type in its top 4 bits and a **cumulative end offset**
 // in the low 28, so a child's length is its end minus the previous one's.
+import fs from "node:fs";
+
 export const PACKED_MAGIC = 0x62a14e45;
 
 export enum PackedType {
@@ -28,6 +30,18 @@ const LENGTH_MASK = 0x0fffffff;
 
 export function isPacked(buf: Buffer): boolean {
   return buf.length >= 5 && buf.readUInt32LE(0) === PACKED_MAGIC;
+}
+
+/** Cheap magic check that reads four bytes instead of the whole file. */
+export function isPackedFile(file: string): boolean {
+  const fd = fs.openSync(file, "r");
+  try {
+    const head = Buffer.alloc(4);
+    const read = fs.readSync(fd, head, 0, 4, 0);
+    return read === 4 && head.readUInt32LE(0) === PACKED_MAGIC;
+  } finally {
+    fs.closeSync(fd);
+  }
 }
 
 function readDictionary(buf: Buffer, offset: number): { keys: string[]; offset: number } {

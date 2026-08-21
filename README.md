@@ -47,15 +47,22 @@ should be content the two builds genuinely disagree on.
 Fully self-contained, no game client needed.
 
 1. **WGUS** resolves a branch to the versioned CDN URLs of the install `.wgpkg`
-   volumes.
+   volumes, and to every incremental patch published since that install.
 2. Those volumes are a split 7-Zip whose entries are each their own LZMA2 block.
    We recreate them as **sparse** local files, fill in only the ~2 MB header so
    `7z l` can enumerate the blocks, then range-download one block per package.
-3. Each package is a zip laid out under `sources/res/`. We keep **sources only**,
+3. Each package is rebuilt to the live build by replaying the chain's binary
+   deltas over it, `.xdiff` (VCDIFF, via `xdelta3`) and `.rdiff` (librsync, via
+   `rdiff`). **This is what keeps the mirror current**: Wargaming republishes a
+   full install only every few weeks, so the new tanks and the rebalances all
+   arrive as patches. Mirroring the install alone would freeze the tree at the
+   last republication.
+4. A package is a zip laid out under `sources/res/`. We keep **sources only**,
    as upstream does: `.pyc` decompiled to `.py`, packed XML converted to text,
    `.def`/`.txt` copied, `.swc` libraries decompiled into `sources-as3/`, and
    everything binary (textures, sounds, video, web assets) dropped.
-4. The `locale` part's gettext `.mo` catalogues become `.po`.
+5. The game root's own config files are harvested the same way, and the `locale`
+   part's gettext `.mo` catalogues become `.po`.
 
 The client stores its XML as **BigWorld packed sections**, a binary tree with a
 string dictionary; `lib/packed.ts` decodes it and `lib/serialize.ts` writes it
@@ -67,7 +74,8 @@ releases mangle nested dict comprehensions) and `ffdec 14.4.0` (later ones
 reorder SWF metadata and rewrite boolean coercions). Both were found by
 bisecting against upstream's published output.
 
-Run locally (needs `7z`, a JRE, and Python 3.9 with `uncompyle6`/`polib`):
+Run locally (needs `7z`, `xdelta3`, `rdiff`, a JRE, and Python 3.9 with
+`uncompyle6`/`polib`):
 
 ```sh
 npm install
@@ -76,6 +84,12 @@ npm run generate -- --host wgus-woteu.wargaming.net --guid WOT.EU.PRODUCTION --o
 
 `--force` re-extracts even when the client version is unchanged, `--only <pkg>`
 limits the run to a single package.
+
+`_stubs/` is the one directory not produced from the client: it describes the
+engine's native modules (`BigWorld`, `Entity`, `WoT`), which ship compiled into
+the executable and exist in no package, so an IDE reading the decompiled scripts
+has nothing to resolve them against. It is vendored from `stubs/` on this branch,
+carried over from upstream, which generated it by introspecting a running client.
 
 ## Notice
 
