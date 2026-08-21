@@ -47,6 +47,12 @@ jobs:
     steps:
       - name: Checkout generator (main)
         uses: actions/checkout@v4
+        with:
+          # The PAT belongs here, not at push time: checkout stores credentials
+          # as an `http.<host>.extraheader`, and that Authorization header wins
+          # over anything put in the remote URL. Setting the URL later left git
+          # pushing as github-actions[bot], which the org denies write to.
+          token: ${{ secrets.SYNC_PAT }}
 
       # The two delta formats the incremental patches ship their packages as:
       # `.xdiff` is VCDIFF, decoded by xdelta3, and `.rdiff` is librsync, whose
@@ -125,8 +131,6 @@ jobs:
 
       - name: Commit & push if changed
         working-directory: out
-        env:
-          GH_TOKEN: ${{ secrets.SYNC_PAT }}
         run: |
           git add -A
           if git diff --cached --quiet; then
@@ -134,5 +138,4 @@ jobs:
             exit 0
           fi
           git commit -m "🍱 sync ${{ matrix.branch }} sources $(cat .version_name)"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
           git push origin "HEAD:${{ matrix.branch }}"
