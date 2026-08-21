@@ -75,10 +75,11 @@ jobs:
       # uncompyle6 3.8.0 does not run on a modern interpreter, and the patch
       # level matters too: its `xdis` dependency keys opcode tables by exact
       # version, so "3.9" resolving to 3.9.25 dies with KeyError: '3.9.25'.
-      # 3.9.6 is the interpreter the comparison against upstream was run on.
+      # 3.9.16 is the newest release xdis 6.0.5 has a table for that the runner
+      # image still ships, so the pin cannot drift into that error again.
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.9.6"
+          python-version: "3.9.16"
 
       - run: npm ci --no-audit --no-fund
 
