@@ -64,6 +64,28 @@ export class SparseArchive {
   }
 
   /**
+   * Release everything downloaded so far, keeping the archive usable.
+   *
+   * Filling a block writes its bytes into the sparse volumes and they stay
+   * there, so walking every package would eventually materialise the whole
+   * multi-gigabyte part on disk. Truncating back to zero punches all of it out;
+   * only the ~2 MB header has to be fetched again.
+   */
+  async reset(): Promise<void> {
+    for (let i = 0; i < this.volumes.length; i++) {
+      const file = volumePath(this.dir, i);
+      const fd = fs.openSync(file, "r+");
+      fs.ftruncateSync(fd, 0);
+      fs.ftruncateSync(fd, this.sizes[i]);
+      fs.closeSync(fd);
+    }
+    const total = this.sizes.reduce((a, b) => a + b, 0);
+    await this.fill(0, Math.min(HEADER_HEAD, this.sizes[0]));
+    const tail = Math.min(HEADER_TAIL, this.sizes[this.sizes.length - 1]);
+    await this.fill(total - tail, tail);
+  }
+
+  /**
    * Every entry with its byte offset. Blocks are non-solid and laid out in
    * listing order starting at 32, which has been verified against real CRCs.
    */
