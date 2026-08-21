@@ -54,6 +54,11 @@ jobs:
           - branch: PT_RU
             host: lstus-ru.lesta.ru
             guid: MT.PT.PRODUCTION
+          # 坦克世界, operated in China by 360 rather than by Wargaming, so it
+          # has its own update service and CDN. The protocol is unchanged.
+          - branch: CN
+            host: wgus-cn360.wggames.cn
+            guid: WOT.CN.PRODUCTION
 
     steps:
       - name: Checkout generator (main)

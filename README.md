@@ -20,10 +20,17 @@ daily and pushes what changed, the same way
 | [`CT`](../../tree/CT) | Wargaming Common Test | `wgus-wotct.wargaming.net` | `WOT.CT.PRODUCTION` |
 | [`RU`](../../tree/RU) | Lesta release (Мир танков) | `lstus-ru.lesta.ru` | `MT.RU.PRODUCTION` |
 | [`PT_RU`](../../tree/PT_RU) | Lesta public test | `lstus-ru.lesta.ru` | `MT.PT.PRODUCTION` |
+| [`CN`](../../tree/CN) | 360 release (坦克世界) | `wgus-cn360.wggames.cn` | `WOT.CN.PRODUCTION` |
 
 These keep the names they had as upstream mirrors, so everything reading this
 repo carries on unchanged; they simply stop being copies of IzeBerg's work and
 become our own extraction, one build fresher.
+
+Two branches are not served by Wargaming at all, and each one took reading its
+launcher to find: the host is in no binary, but the launcher's resource blob
+(`lgc_res.dat` / `wgc_res.dat`) carries a zlib-compressed `gc_info.xml` whose
+`install_*check_link` is a base64 `<GUID>@<url>` pair. That is where
+`lstus-ru.lesta.ru` and `wgus-cn360.wggames.cn` came from.
 
 `RU` is not Wargaming's: since it left Russia its own service froze that branch
 at December 2023, and Мир танков is published by **Lesta**, on its own update
@@ -37,14 +44,9 @@ WGUS answers a moved branch with a `redirect_url` that the generator follows.
 The Common Test currently redirects to `wgus-eu.wargaming.net`, and is only
 published while a test is running, so between tests its build is a no-op.
 
-## Branches we mirror
-
-[`sync-upstream`](.github/workflows/sync-upstream.yml) still fast-forwards the
-branch we do **not** build, `CN`, from
-[IzeBerg/wot-src](https://github.com/IzeBerg/wot-src) twice a day.
-
-> Don't commit to those directly. Any divergence makes the fast-forward sync
-> fail, so fork-specific changes belong on `main`.
+Every branch is now built from the client. Nothing is mirrored from
+[IzeBerg/wot-src](https://github.com/IzeBerg/wot-src) any more, so the
+`sync-upstream` workflow is gone.
 
 Our output is meant to stay interchangeable with upstream's, and that is
 measurable: diff a built branch against the matching one on
