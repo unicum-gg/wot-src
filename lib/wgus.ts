@@ -40,8 +40,15 @@ function compareVersions(a: string, b: string): number {
  * The chain arrives unordered and may carry links for versions this build no
  * longer reaches; anything the walk cannot reach is dropped rather than applied
  * out of order, which would corrupt every package it touches.
+ *
+ * Lesta's service omits `version_from` entirely, so there is nothing to follow.
+ * There the order is `version_to` ascending and the full install is simply the
+ * first link, which its size confirms (gigabytes against megabytes).
  */
 function order(patches: Patch[]): Patch[] {
+  if (patches.every((p) => p.from === "")) {
+    return [...patches].sort((a, b) => compareVersions(a.to, b.to));
+  }
   const full = patches.find((p) => p.from === "0");
   if (!full) return [];
   const byFrom = new Map(patches.filter((p) => p.from !== "0").map((p) => [p.from, p]));
@@ -114,9 +121,11 @@ export async function resolveClient(host: string, guid: string): Promise<Client 
     const byPart = new Map<string, Patch[]>();
     for (const [, patch] of matchAll(chain, /<patch>([\s\S]*?)<\/patch>/g)) {
       const part = match(patch, /<part>([^<]+)<\/part>/);
-      const from = match(patch, /<version_from>([^<]+)<\/version_from>/);
+      // `version_from` is absent from Lesta's chain; `order` reads that as
+      // "sort by version_to" rather than as a broken link.
+      const from = match(patch, /<version_from>([^<]+)<\/version_from>/) ?? "";
       const to = match(patch, /<version_to>([^<]+)<\/version_to>/);
-      if (!part || from === undefined || to === undefined) continue;
+      if (!part || to === undefined) continue;
       const volumes = matchAll(patch, /<file>([\s\S]*?)<\/file>/g).map((m): Volume => ({
         url: seedBase + (match(m[1], /<name>([^<]+)<\/name>/) ?? "").trim(),
         size: Number(match(m[1], /<size>([^<]+)<\/size>/)),
@@ -125,11 +134,12 @@ export async function resolveClient(host: string, guid: string): Promise<Client 
     }
 
     // The publisher stamps every patch URL with the build it belongs to, in the
-    // directory rather than the file (`.../wot_2.3.1.5412_eu_yuvdes/wot_...`),
+    // directory rather than the file (`.../wot_2.3.1.5412_eu_yuvdes/wot_...`,
+    // `.../mt_1.44.0.5163_ru_zbzti2/...` on Lesta),
     // and that is the only place the human-readable version appears; the
     // metadata only carries a timestamp. The file names carry a different,
     // much larger internal number, so the realm and hash are matched too.
-    const builds = matchAll(chain, /\/wot_([0-9.]+)_[a-z0-9]+_[a-z0-9]+\//g).map((m) => m[1]);
+    const builds = matchAll(chain, /\/[a-z]+_([0-9.]+)_[a-z0-9]+_[a-z0-9]+\//g).map((m) => m[1]);
     const versionName = builds.sort(compareVersions).at(-1) ?? version;
 
     return {

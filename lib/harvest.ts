@@ -24,6 +24,8 @@ export type Stats = { xml: number; copied: number; swc: number };
 export type Harvester = {
   /** Where `.pyc` accumulate for the single decompiler pass at the end. */
   pycRoot: string;
+  /** Where `.mo` catalogues accumulate for the single conversion at the end. */
+  moRoot: string;
   harvest: (root: string, dest: string) => Stats;
 };
 
@@ -49,6 +51,7 @@ export function createHarvester(options: {
 }): Harvester {
   const { workDir, sourcesAs3, ffdecJar, log } = options;
   const pycRoot = path.join(workDir, "pyc");
+  const moRoot = path.join(workDir, "mo-packages");
 
   /**
    * A `.swc` is a zip holding `library.swf`; that is what carries the classes.
@@ -94,6 +97,12 @@ export function createHarvester(options: {
         writeFile(path.join(pycRoot, rel), fs.readFileSync(file));
         continue;
       }
+      if (ext === ".mo") {
+        // A Russian-only build has no separate locale part, so its gettext
+        // catalogues travel inside the packages. Converted with the others.
+        writeFile(path.join(moRoot, rel), fs.readFileSync(file));
+        continue;
+      }
       if (ext === ".swc") {
         if (decompileSwc(file)) stats.swc++;
         // fall through: the archive itself is published too
@@ -118,5 +127,5 @@ export function createHarvester(options: {
     return stats;
   }
 
-  return { pycRoot, harvest };
+  return { pycRoot, moRoot, harvest };
 }

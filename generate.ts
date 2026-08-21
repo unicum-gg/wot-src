@@ -81,7 +81,7 @@ const STUBS = path.resolve("stubs");
 
 const log = (msg: string) => console.log(`[wot-src] ${msg}`);
 
-const { pycRoot, harvest } = createHarvester({
+const { pycRoot, moRoot, harvest } = createHarvester({
   workDir: fs.mkdtempSync(path.join(os.tmpdir(), "wotsrc-")),
   sourcesAs3: SOURCES_AS3,
   ffdecJar: FFDEC_JAR,
@@ -299,10 +299,20 @@ async function main(): Promise<void> {
   }
 
   await harvestLocale(client.getChain("locale"));
+  convertCatalogues(moRoot);
 
   publishRepoFiles(client.versionName);
   writeFile(versionFile, `${client.versionName}\n`);
   log(`done: ${OUT}`);
+}
+
+/** Turn every `.mo` gathered along the way into the published `.po`. */
+function convertCatalogues(source: string): void {
+  const target = path.join(SOURCES, "text", "lc_messages");
+  const from = path.join(source, "text", "lc_messages");
+  if (!fs.existsSync(from)) return;
+  execFileSync(PYTHON, [path.resolve("lib/py/mo_to_po.py"), from, target], { stdio: "inherit" });
+  log(`converted ${fs.readdirSync(target).length} catalogues from the packages`);
 }
 
 /** Localisation lives in its own part, as loose `.mo` catalogues. */
@@ -319,10 +329,18 @@ async function harvestLocale(chain: Patch[]): Promise<void> {
   for (const block of catalogues) await archive.extract(block, moDir);
   // Non-catalogue files follow the usual rules (fontconfig.xml, loc_version).
   harvest(moDir, ROOT);
+
+  // Lesta ships a 330-byte locale part: Мир танков is Russian-only, so its
+  // catalogues travel with the client instead. Nothing to convert here, and
+  // that is a normal state rather than a failure.
+  const source = path.join(moDir, "res", "text", "lc_messages");
+  if (!fs.existsSync(source)) {
+    log("no gettext catalogues in the locale part");
+    return;
+  }
   execFileSync(
     PYTHON,
-    [path.resolve("lib/py/mo_to_po.py"), path.join(moDir, "res", "text", "lc_messages"),
-     path.join(SOURCES, "text", "lc_messages")],
+    [path.resolve("lib/py/mo_to_po.py"), source, path.join(SOURCES, "text", "lc_messages")],
     { stdio: "inherit" },
   );
   log(`converted ${fs.readdirSync(path.join(SOURCES, "text", "lc_messages")).length} catalogues`);
