@@ -18,7 +18,7 @@
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>1.800000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>
@@ -29,7 +29,7 @@
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>-1.800000</rangeEnd>
 				</condition>
 			</conditions>
@@ -49,7 +49,7 @@
 				<condition>
 					<type>float</type>
 					<name>speed</name>
-					<rangeStart>-inf</rangeStart>
+					<rangeStart>-∞</rangeStart>
 					<rangeEnd>1.000000</rangeEnd>
 				</condition>
 			</conditions>
@@ -106,7 +106,7 @@
 					<type>float</type>
 					<name>speed</name>
 					<rangeStart>-1.000000</rangeStart>
-					<rangeEnd>inf</rangeEnd>
+					<rangeEnd>∞</rangeEnd>
 				</condition>
 			</conditions>
 		</transition>

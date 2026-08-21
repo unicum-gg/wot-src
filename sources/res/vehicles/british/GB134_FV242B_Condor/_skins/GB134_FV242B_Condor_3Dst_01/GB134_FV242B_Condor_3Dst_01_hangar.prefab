@@ -287,7 +287,10 @@
 					</property>
 					<property>
 						<name>modelLink</name>
-						<link>00000000-0000-0000-0000-000000000001</link>
+						<link>
+							00000000-0000-0000-0000-000000000001
+							<!--BW_String-->
+						</link>
 					</property>
 				</config>
 			</component>
@@ -305,7 +308,10 @@
 					</property>
 					<property>
 						<name>modelLink</name>
-						<link>00000000-0000-0000-0000-000000000001</link>
+						<link>
+							00000000-0000-0000-0000-000000000001
+							<!--BW_String-->
+						</link>
 					</property>
 				</config>
 			</component>
@@ -323,7 +329,10 @@
 					</property>
 					<property>
 						<name>modelLink</name>
-						<link>00000000-0000-0000-0000-000000000001</link>
+						<link>
+							00000000-0000-0000-0000-000000000001
+							<!--BW_String-->
+						</link>
 					</property>
 				</config>
 			</component>

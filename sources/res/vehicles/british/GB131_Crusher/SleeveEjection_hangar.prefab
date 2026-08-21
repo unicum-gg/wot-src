@@ -100,7 +100,7 @@
 				<config>
 					<property>
 						<name>NodeName</name>
-						<value>turret</value>
+						<value>HP_sleeveRoot</value>
 					</property>
 					<property>
 						<name>DeactivateIfInvalid</name>
@@ -108,7 +108,10 @@
 					</property>
 					<property>
 						<name>modelLink</name>
-						<link>00000000-0000-0000-0000-000000000002</link>
+						<link>
+							00000000-0000-0000-0000-000000000002
+							<!--BW_String-->
+						</link>
 					</property>
 				</config>
 			</component>

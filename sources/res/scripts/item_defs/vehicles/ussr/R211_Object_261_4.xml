@@ -1770,10 +1770,7 @@
 				<left>
 					<segmentsCount>105</segmentsCount>
 					<segmentsOuterThickness>0.061075</segmentsOuterThickness>
-					<segmentsInnerThickness>
-						-0
-						<!--BW_String-->
-					</segmentsInnerThickness>
+					<segmentsInnerThickness>-0</segmentsInnerThickness>
 					<segmentsPlaneOffset>
 						-1.353
 						<!--BW_String-->
@@ -2124,10 +2121,7 @@
 				<right>
 					<segmentsCount>105</segmentsCount>
 					<segmentsOuterThickness>0.061075</segmentsOuterThickness>
-					<segmentsInnerThickness>
-						-0
-						<!--BW_String-->
-					</segmentsInnerThickness>
+					<segmentsInnerThickness>-0</segmentsInnerThickness>
 					<segmentsPlaneOffset>
 						1.353
 						<!--BW_String-->
