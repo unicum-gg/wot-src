@@ -49,6 +49,11 @@ jobs:
           - branch: RU
             host: lstus-ru.lesta.ru
             guid: MT.RU.PRODUCTION
+          # Lesta's public test, one version ahead of RU. Same host, and the
+          # client installs itself as `Tanki_PT` alongside the live one.
+          - branch: PT_RU
+            host: lstus-ru.lesta.ru
+            guid: MT.PT.PRODUCTION
 
     steps:
       - name: Checkout generator (main)

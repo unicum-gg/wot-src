@@ -24,9 +24,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # EU/NA/ASIA/CT/RU are built from the client by `build.yml`, so they
-        # diverge from upstream on purpose and must not be synced here.
-        branch: [CN, PT_RU]
+        # Every other branch is built from the client by `build.yml`, so it
+        # diverges from upstream on purpose and must not be synced here. CN is
+        # the last one left: the Chinese client is published locally, not by
+        # Wargaming's service, so its update host is still unknown.
+        branch: [CN]
     steps:
       - name: Fast-forward ${{ matrix.branch }} from upstream
         env:

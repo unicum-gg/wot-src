@@ -19,6 +19,7 @@ daily and pushes what changed, the same way
 | [`ASIA`](../../tree/ASIA) | Wargaming release, Asia | `wgus-wotasia.wargaming.net` | `WOT.ASIA.PRODUCTION` |
 | [`CT`](../../tree/CT) | Wargaming Common Test | `wgus-wotct.wargaming.net` | `WOT.CT.PRODUCTION` |
 | [`RU`](../../tree/RU) | Lesta release (Мир танков) | `lstus-ru.lesta.ru` | `MT.RU.PRODUCTION` |
+| [`PT_RU`](../../tree/PT_RU) | Lesta public test | `lstus-ru.lesta.ru` | `MT.PT.PRODUCTION` |
 
 These keep the names they had as upstream mirrors, so everything reading this
 repo carries on unchanged; they simply stop being copies of IzeBerg's work and
@@ -39,7 +40,7 @@ published while a test is running, so between tests its build is a no-op.
 ## Branches we mirror
 
 [`sync-upstream`](.github/workflows/sync-upstream.yml) still fast-forwards the
-branches we do **not** build, `CN` and `PT_RU`, from
+branch we do **not** build, `CN`, from
 [IzeBerg/wot-src](https://github.com/IzeBerg/wot-src) twice a day.
 
 > Don't commit to those directly. Any divergence makes the fast-forward sync
