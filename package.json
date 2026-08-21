@@ -6,7 +6,8 @@
   "description": "Decompiled World of Tanks client sources, extracted from the game update CDN via WGUS.",
   "scripts": {
     "generate": "tsx generate.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate:assets": "tsx generate-assets.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.5",
