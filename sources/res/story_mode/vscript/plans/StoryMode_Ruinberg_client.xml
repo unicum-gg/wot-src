@@ -29,7 +29,6 @@
 					</param>
 					<param>
 						169FB8FC.46E594BD.CFA92D91.9B48E3A1
-						<!--BW_String-->
 						<name>Guid</name>
 						<type>StringT</type>
 					</param>
@@ -285,7 +284,6 @@
 					</param>
 					<param>
 						3B157809.4F556EBD.45E2C59D.D9F98A1C
-						<!--BW_String-->
 						<name>Guid</name>
 						<type>StringT</type>
 					</param>
