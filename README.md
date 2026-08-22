@@ -102,6 +102,22 @@ the executable and exist in no package, so an IDE reading the decompiled scripts
 has nothing to resolve them against. It is vendored from `stubs/` on this branch,
 carried over from upstream, which generated it by introspecting a running client.
 
+## The icon mirror
+
+[`assets.yml`](.github/workflows/assets.yml) rebuilds the four branches of
+[`unicum-gg/wot.assets`](https://github.com/unicum-gg/wot.assets) from the same
+clients, publishing the `gui` tree. It exists for the same reason this repo
+does: that mirror was a fork of an upstream whose test branch froze in July
+2026, which left Common Test vehicles with no picture anywhere, since
+Wargaming's CDN serves released vehicles only.
+
+**It accumulates, unlike this one.** A script the client drops must stop being
+published here, because the tree describes what the game is. Assets are the
+other way round: Wargaming pulls an event's art when the event ends, and those
+files are gone for good. So the assets run writes over its branch without
+clearing it, keeping ~23k retired event assets alongside what the live client
+carries.
+
 ## Notice
 
 Assets provided in the repository are the property of their sole owners.

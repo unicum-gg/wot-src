@@ -11,6 +11,16 @@
 // is what the site actually reads, and the extraction is filtered so the rest
 // never lands on disk.
 //
+// **This mirror accumulates, and that is the opposite of `generate.ts`.** The
+// sources tree empties its worktree first, because a script the client dropped
+// must stop being published: it describes what the game *is*. Assets are not
+// that. Wargaming pulls an event's art when the event ends, and upstream still
+// carries 23k such files: St Patrick, Grinch, Halloween, off-season Frontline,
+// retired lootbox rewards. They were real, someone may still want them, and no
+// later client will ever hand them back. So the run writes over the branch
+// without clearing it: what the current client has is refreshed, what it no
+// longer has is kept.
+//
 // Usage: npm run generate:assets -- --host H --guid G --out DIR [--force]
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
@@ -34,17 +44,23 @@ const GUID = flag("--guid") ?? "WOT.CT.PRODUCTION";
 const OUT = path.resolve(flag("--out") ?? "assets-out");
 const FORCE = args.includes("--force");
 
-// The GUI ships as several packages and the naming varies by client: Wargaming
-// splits it `gui-part1..4`, Lesta ships two parts plus `gui_lootboxes`. Match
-// them all rather than a fixed list; the extraction filter below is what keeps
-// the cost down, so a package holding no vehicle icon simply yields nothing.
-const GUI_PACKAGE = /^res\/packages\/gui[-_a-z0-9]*\.pkg$/i;
+// Every package, because `gui` is not confined to the `gui-part*` ones: each
+// game mode carries its own slice (frontline's hangar presets, battle pass
+// cards, lootbox rewards), and taking only the gui packages left 23,263 of
+// upstream's files behind. The audio banks are the one exception, gigabytes of
+// Wwise blobs with no `gui` inside.
+// Both parts: `client` holds most of the GUI, but `sdcontent` carries slices of
+// it too, and taking only the first left whole directories (configs, effects,
+// parallax) out of the mirror.
+const PARTS = ["client", "sdcontent"];
+const PACKAGE = /^res\/packages\/[^/]+\.pkg$/;
+const SKIPPED = /(^|\/)audioww/i;
 
-// What we publish, keyed by the path inside the package. `contour` is the
-// silhouette used in lists, the sized folders are the hangar renders.
-const KEPT = /^gui\/maps\/icons\/vehicle\/(contour\/)?[^/]+\.png$/i;
-const KEPT_SIZED = /^gui\/maps\/icons\/vehicle\/\d+x\d+\/[^/]+\.png$/i;
-const wanted = (rel: string) => KEPT.test(rel) || KEPT_SIZED.test(rel);
+// The whole `gui` tree, which is what upstream publishes: atlases, configs,
+// effects, flash, videos and the icons. Narrowing it to the vehicle icons we
+// happen to read would leave every other directory frozen at whatever upstream
+// last synced, which is worse than the fork we are replacing.
+const PUBLISHED = "gui";
 
 const log = (msg: string) => console.log(`[wot.assets] ${msg}`);
 
@@ -58,7 +74,9 @@ async function main(): Promise<void> {
   log(`client ${client.versionName} (host ${client.host})`);
 
   const versionFile = path.join(OUT, ".version_name");
-  const current = fs.existsSync(versionFile) ? fs.readFileSync(versionFile, "utf8").trim() : null;
+  const current = fs.existsSync(versionFile)
+    ? fs.readFileSync(versionFile, "utf8").trim()
+    : null;
   if (current === client.versionName && !FORCE) {
     log(`already at ${client.versionName}, nothing to do`);
     return;
@@ -66,44 +84,59 @@ async function main(): Promise<void> {
 
   const workDir = fs.mkdtempSync(path.join(os.tmpdir(), "wotassets-"));
   try {
-    const chain = client.getChain("client");
-    if (chain.length === 0) throw new Error("no client volumes");
-    const clientDir = path.join(workDir, "client");
-    fs.mkdirSync(clientDir, { recursive: true });
-    const archive = await SparseArchive.open(clientDir, chain[0].volumes);
-    const packages = [...archive.index().values()].filter((b) => GUI_PACKAGE.test(b.name));
-    log(`${packages.length} gui packages`);
-
     let total = 0;
-    for (const block of packages) {
-      const unpackDir = path.join(workDir, "pkg");
-      fs.rmSync(unpackDir, { recursive: true, force: true });
-      const pkg = await archive.extract(block, unpackDir);
-      const contents = path.join(workDir, "contents");
-      fs.rmSync(contents, { recursive: true, force: true });
-      // Extract only the icon tree: a gui package is ~2.5 GB unpacked and all
-      // but a fraction of it is atlases and video we do not publish.
-      execFileSync(
-        "7z",
-        ["x", pkg, `-o${contents}`, "-y", "gui/maps/icons/vehicle/*"],
-        { stdio: "ignore" },
+    for (const part of PARTS) {
+      const chain = client.getChain(part);
+      if (chain.length === 0) continue;
+      const partDir = path.join(workDir, part);
+      fs.rmSync(partDir, { recursive: true, force: true });
+      fs.mkdirSync(partDir, { recursive: true });
+      const archive = await SparseArchive.open(partDir, chain[0].volumes);
+      const packages = [...archive.index().values()].filter(
+        (b) => PACKAGE.test(b.name) && !SKIPPED.test(b.name),
       );
-      let kept = 0;
-      for (const file of walk(contents)) {
-        const rel = path.relative(contents, file).split(path.sep).join("/");
-        if (!wanted(rel)) continue;
-        writeFile(path.join(OUT, rel), fs.readFileSync(file));
-        kept++;
+      log(`${part}: ${packages.length} packages to scan for ${PUBLISHED}`);
+
+      for (const block of packages) {
+        const unpackDir = path.join(workDir, "pkg");
+        fs.rmSync(unpackDir, { recursive: true, force: true });
+        const pkg = await archive.extract(block, unpackDir);
+        const contents = path.join(workDir, "contents");
+        fs.rmSync(contents, { recursive: true, force: true });
+        // Scoped to `gui` so a package holding anything else costs nothing to
+        // unpack; it is also the only tree this mirror publishes. Most packages
+        // carry none at all, which 7z reports as an error rather than an empty
+        // result, so it is not one here.
+        try {
+          execFileSync(
+            "7z",
+            ["x", pkg, `-o${contents}`, "-y", `${PUBLISHED}/*`],
+            {
+              stdio: "ignore",
+            },
+          );
+        } catch {
+          // no `gui` inside; the walk below simply finds nothing
+        }
+        let kept = 0;
+        for (const file of walk(path.join(contents, PUBLISHED))) {
+          const rel = path.relative(contents, file).split(path.sep).join("/");
+          writeFile(path.join(OUT, rel), fs.readFileSync(file));
+          kept++;
+        }
+        total += kept;
+        log(
+          `  ${path.basename(block.name)} (${(block.packed / 1e6).toFixed(0)} MB): ${kept} files`,
+        );
+        fs.rmSync(unpackDir, { recursive: true, force: true });
+        fs.rmSync(contents, { recursive: true, force: true });
+        await archive.reset();
       }
-      total += kept;
-      log(`  ${path.basename(block.name)} (${(block.packed / 1e6).toFixed(0)} MB): ${kept} icons`);
-      fs.rmSync(unpackDir, { recursive: true, force: true });
-      fs.rmSync(contents, { recursive: true, force: true });
-      await archive.reset();
+      fs.rmSync(partDir, { recursive: true, force: true });
     }
 
     writeFile(versionFile, `${client.versionName}\n`);
-    log(`done: ${total} icons in ${OUT}`);
+    log(`done: ${total} files in ${OUT}`);
   } finally {
     fs.rmSync(workDir, { recursive: true, force: true });
   }
