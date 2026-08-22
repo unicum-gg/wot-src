@@ -9,19 +9,23 @@
 				<params>
 					<param>
 						250%
+						<!--BW_String-->
 						<name>enginePowerWithBoosters</name>
 					</param>
 					<param>
 						155%
+						<!--BW_String-->
 						<name>topSpeedWithBoosters</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
 					<param>
 						-90%
+						<!--BW_String-->
 						<name>reverseSpeedReductionWithBoosters</name>
 					</param>
 					<param>
 						-70%
+						<!--BW_String-->
 						<name>traverseSpeedReductionWithBoosters</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -38,6 +42,7 @@
 					</param>
 					<param>
 						70%
+						<!--BW_String-->
 						<name>reactivationLimit</name>
 					</param>
 					<param>
@@ -57,6 +62,7 @@
 				<params>
 					<param>
 						130%
+						<!--BW_String-->
 						<name>stagedJetBoostersEnginePower</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -67,10 +73,12 @@
 					</param>
 					<param>
 						100%
+						<!--BW_String-->
 						<name>stagedJetBoostersSpeedLimits</name>
 					</param>
 					<param>
 						130%
+						<!--BW_String-->
 						<name>stagedJetBoostersRotationSpeed</name>
 					</param>
 					<param>
@@ -174,11 +182,13 @@
 					</param>
 					<param>
 						+56%
+						<!--BW_String-->
 						<name>propellantPostLimitDispersion</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
 					<param>
 						+60%
+						<!--BW_String-->
 						<name>propellantPostLimitAimingTime</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -199,11 +209,13 @@
 				<params>
 					<param>
 						-20%
+						<!--BW_String-->
 						<name>accuracyDispersionCap</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
 					<param>
 						-40%
+						<!--BW_String-->
 						<name>accuracyWhileMovingDispersionCap</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -213,6 +225,7 @@
 					</param>
 					<param>
 						-5%
+						<!--BW_String-->
 						<name>accuracyDispersionPerLevel</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -283,6 +296,7 @@
 					</param>
 					<param>
 						15%
+						<!--BW_String-->
 						<name>designatorMarkedEnemiesAdditionalDamage</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -352,6 +366,7 @@
 					</param>
 					<param>
 						46%
+						<!--BW_String-->
 						<name>heatingPerShot</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -374,6 +389,7 @@
 					</param>
 					<param>
 						15%
+						<!--BW_String-->
 						<name>activeCoincideceShootingCharge</name>
 					</param>
 					<param>
@@ -383,14 +399,17 @@
 					</param>
 					<param>
 						-25%
+						<!--BW_String-->
 						<name>aimingTimeCoincidenceElectromechanicalSight</name>
 					</param>
 					<param>
 						-20%
+						<!--BW_String-->
 						<name>dispersionAt100mCoincidenceElectromechanicalSight</name>
 					</param>
 					<param>
 						-20%
+						<!--BW_String-->
 						<name>reloadTimeCoincidence</name>
 					</param>
 					<param>
@@ -400,26 +419,32 @@
 					</param>
 					<param>
 						+15/+5
+						<!--BW_String-->
 						<name>turboSpeedCap</name>
 					</param>
 					<param>
 						+25%
+						<!--BW_String-->
 						<name>engineTurboPowerCap</name>
 					</param>
 					<param>
 						+90%
+						<!--BW_String-->
 						<name>aimingTimeTurbo</name>
 					</param>
 					<param>
 						+90%
+						<!--BW_String-->
 						<name>movementTraverseDispersionTurbo</name>
 					</param>
 					<param>
 						+90%
+						<!--BW_String-->
 						<name>hullTraverseDispersionTurbo</name>
 					</param>
 					<param>
 						+90%
+						<!--BW_String-->
 						<name>gunTraverseDispersionTurbo</name>
 					</param>
 					<param>
@@ -430,6 +455,7 @@
 					</param>
 					<param>
 						4%
+						<!--BW_String-->
 						<name>ionAfterburnerActiveTurboCharge</name>
 					</param>
 					<param>
@@ -439,10 +465,12 @@
 					</param>
 					<param>
 						+10/+5
+						<!--BW_String-->
 						<name>ionAfterburnerDurationSpeedCap</name>
 					</param>
 					<param>
 						+10%
+						<!--BW_String-->
 						<name>ionAfterburnerDurationEnginePower</name>
 					</param>
 				</params>
@@ -464,20 +492,24 @@
 					</param>
 					<param>
 						-25%
+						<!--BW_String-->
 						<name>shotDispersionAngle</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
 					<param>
 						1/1
+						<!--BW_String-->
 						<name>speedLimits</name>
 					</param>
 					<param>
 						-60%
+						<!--BW_String-->
 						<name>pillboxHorizontalRotationSpeed</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
 					<param>
 						-40%
+						<!--BW_String-->
 						<name>pillboxVerticalRotationSpeed</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -513,16 +545,19 @@
 				<params>
 					<param>
 						+70%
+						<!--BW_String-->
 						<name>enginePower</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
 					<param>
 						+50%
+						<!--BW_String-->
 						<name>forwardMaxSpeed</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
 					<param>
 						-30%
+						<!--BW_String-->
 						<name>chassisRotationSpeed</name>
 					</param>
 					<param>
@@ -561,6 +596,7 @@
 					</param>
 					<param>
 						70%
+						<!--BW_String-->
 						<name>chargeableBurstDispersion</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -577,6 +613,7 @@
 				<params>
 					<param>
 						15%
+						<!--BW_String-->
 						<name>furyMaxReloadEffAvgDpm</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -586,6 +623,7 @@
 					</param>
 					<param>
 						3%
+						<!--BW_String-->
 						<name>furyReloadSpeedBonusPerEfficiencyLevel</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -625,29 +663,35 @@
 					</param>
 					<param>
 						-100%
+						<!--BW_String-->
 						<name>vehicleGunShotDispersionChassisMovement</name>
 						<kpiSign>negative</kpiSign>
 					</param>
 					<param>
 						-100%
+						<!--BW_String-->
 						<name>vehicleGunShotDispersionChassisRotation</name>
 						<kpiSign>negative</kpiSign>
 					</param>
 					<param>
 						-100%
+						<!--BW_String-->
 						<name>vehicleGunShotDispersionTurretRotation</name>
 						<kpiSign>negative</kpiSign>
 					</param>
 					<param>
 						-6%
+						<!--BW_String-->
 						<name>shotDispersionAngle</name>
 					</param>
 					<param>
 						+10%
+						<!--BW_String-->
 						<name>chassisRotationSpeed</name>
 					</param>
 					<param>
 						+10%
+						<!--BW_String-->
 						<name>enginePower</name>
 					</param>
 				</params>
@@ -682,6 +726,7 @@
 					</param>
 					<param>
 						6%
+						<!--BW_String-->
 						<name>heatingPerShot</name>
 					</param>
 				</params>
@@ -696,7 +741,7 @@
 				<rank>silver</rank>
 				<params>
 					<param>
-						4.8
+						3.3
 						<!--BW_String-->
 						<name>timeToOverheat</name>
 					</param>
@@ -717,6 +762,7 @@
 					</param>
 					<param>
 						9%
+						<!--BW_String-->
 						<name>heatingPerShot</name>
 					</param>
 				</params>
@@ -752,6 +798,7 @@
 					</param>
 					<param>
 						11%
+						<!--BW_String-->
 						<name>heatingPerShot</name>
 					</param>
 				</params>
@@ -789,6 +836,7 @@
 					</param>
 					<param>
 						8%
+						<!--BW_String-->
 						<name>heatingPerShot</name>
 					</param>
 				</params>
@@ -828,6 +876,7 @@
 					</param>
 					<param>
 						11%
+						<!--BW_String-->
 						<name>heatingPerShot</name>
 					</param>
 				</params>
@@ -843,11 +892,13 @@
 				<params>
 					<param>
 						+60%
+						<!--BW_String-->
 						<name>improvedDamageEnemiesByRamming</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
 					<param>
 						+20%
+						<!--BW_String-->
 						<name>improvedDamageEnemiesChassisByRamming</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -906,11 +957,13 @@
 					</param>
 					<param>
 						222%
+						<!--BW_String-->
 						<name>lowChargeShotRateOfFire</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
 					<param>
 						125%
+						<!--BW_String-->
 						<name>lowChargeShotDispertion</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -936,6 +989,7 @@
 				<params>
 					<param>
 						130%
+						<!--BW_String-->
 						<name>stagedJetBoostersEnginePower</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -946,10 +1000,12 @@
 					</param>
 					<param>
 						100%
+						<!--BW_String-->
 						<name>stagedJetBoostersSpeedLimits</name>
 					</param>
 					<param>
 						130%
+						<!--BW_String-->
 						<name>stagedJetBoostersRotationSpeed</name>
 					</param>
 					<param>
@@ -979,15 +1035,18 @@
 				<params>
 					<param>
 						150%
+						<!--BW_String-->
 						<name>wheeledDashEnginePower</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
 					<param>
 						104%
+						<!--BW_String-->
 						<name>wheeledDashTopSpeed</name>
 					</param>
 					<param>
 						114%
+						<!--BW_String-->
 						<name>wheeledDashReverseSpeed</name>
 						<template>vehicle_hub.characteristics.templates.upTo</template>
 					</param>
@@ -1003,6 +1062,7 @@
 					</param>
 					<param>
 						-50%
+						<!--BW_String-->
 						<name>wheeledDashAbilityReloadTimeBonus</name>
 					</param>
 					<param>

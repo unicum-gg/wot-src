@@ -4,7 +4,7 @@
 		<type>radial</type>
 		<intensity>4</intensity>
 		<mipsCount>1</mipsCount>
-		<center>nan nan</center>
+		<center>NaN NaN</center>
 		<params>
 			<hstart>1</hstart>
 			<hend>1</hend>

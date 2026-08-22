@@ -270,7 +270,7 @@
 			</transform>
 		</node>
 		<node>
-			<identifier>fence_Ñ_</identifier>
+			<identifier>fence_ï¿½_</identifier>
 			<transform>
 				<row0>1.000000 0.000000 0.000000</row0>
 				<row1>0.000000 1.000000 0.000000</row1>
@@ -505,7 +505,7 @@
 	</renderSet>
 	<renderSet>
 		<treatAsWorldSpaceObject>true</treatAsWorldSpaceObject>
-		<node>fence_Ñ_</node>
+		<node>fence_ï¿½_</node>
 		<node>fence_C01_04</node>
 		<node>fence_R</node>
 		<node>fence_L02</node>
