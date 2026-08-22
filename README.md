@@ -20,15 +20,15 @@ catalogue, specifications, arenas and nations.
 
 Three publishers, one protocol. Wargaming left Russia, so Мир танков is
 published by **Lesta**, and 坦克世界 by **360** in China; neither is reachable
-from Wargaming's own service. Their update hosts are not in any binary either —
-each launcher keeps them in a zlib-compressed `gc_info.xml` inside its resource
+from Wargaming's own service. Their update hosts are not in any binary
+either: each launcher keeps them in a zlib-compressed `gc_info.xml` inside its resource
 blob.
 
 ## What is published
 
 Sources only, as upstream did: `.pyc` decompiled to `.py`, packed XML converted
 back to text, `.def`/`.txt` copied, `.swc` libraries decompiled into
-`sources-as3/`, and everything binary dropped — except the vehicle contour icons
+`sources-as3/`, and everything binary dropped, except the vehicle contour icons
 and the `.swc` archives themselves. The `locale` part's gettext `.mo` become
 `.po`.
 
@@ -46,7 +46,7 @@ has nothing to resolve them against.
 
 This began as a fork of [IzeBerg/wot-src](https://github.com/IzeBerg/wot-src),
 fast-forwarded from it. That mirror's Common Test branch had frozen on an April
-2021 manifest, so a vehicle in testing was invisible here weeks before release —
+2021 manifest, so a vehicle in testing was invisible here weeks before release,
 which is what the branch exists for. Every branch is now built from the client
 itself.
 
