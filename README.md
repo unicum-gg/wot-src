@@ -1,6 +1,6 @@
 # WOT.NA.PRODUCTION
 
-Decompiled World of Tanks sources for `WOT.NA.PRODUCTION`, currently 2.3.1.5413.
+Decompiled World of Tanks sources for `WOT.NA.PRODUCTION`, currently 2.4.0.5420.
 
 Rebuilt daily from Wargaming's update CDN by the generator on
 [`main`](../../tree/main), with no game client installed. Every file here is
