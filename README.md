@@ -1,6 +1,6 @@
 # WOT.CN.PRODUCTION
 
-Decompiled World of Tanks sources for `WOT.CN.PRODUCTION`, currently 2.4.0.5426.
+Decompiled World of Tanks sources for `WOT.CN.PRODUCTION`, currently 2.4.0.5427.
 
 Rebuilt daily from Wargaming's update CDN by the generator on
 [`main`](../../tree/main), with no game client installed. Every file here is
